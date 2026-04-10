@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('ho_ten', 50);
             $table->string('email', 255);
+            $table->string('password', 255);
             $table->string('so_dien_thoai', 20)->nullable();
             $table->text('file_cv')->nullable()->comment('Đường dẫn file CV');
             $table->tinyInteger('tinh_trang')->default(1);

@@ -23,4 +23,14 @@ class ViTriTuyenDung extends Model
         'ngay_bat_dau'  => 'datetime',
         'ngay_ket_thuc' => 'datetime',
     ];
+
+    public function phongBan()
+    {
+        return $this->belongsTo(PhongBan::class, 'id_phong_ban');
+    }
+
+    public function chucVu()
+    {
+        return $this->belongsTo(ChucVu::class, 'id_chuc_vu');
+    }
 }

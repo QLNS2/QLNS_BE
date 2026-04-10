@@ -2,63 +2,44 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\LoaiHopDong;
 use Illuminate\Http\Request;
 
 class LoaiHopDongController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        return response()->json(LoaiHopDong::where('tinh_trang', 1)->get());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'ten_hop_dong' => 'required|string|max:100',
+            'noi_dung'     => 'nullable|string',
+            'tinh_trang'   => 'integer|in:0,1',
+        ]);
+        return response()->json(LoaiHopDong::create($validated), 201);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function show(LoaiHopDong $loaiHopDong)
     {
-        //
+        return response()->json($loaiHopDong);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function update(Request $request, LoaiHopDong $loaiHopDong)
     {
-        //
+        $loaiHopDong->update($request->validate([
+            'ten_hop_dong' => 'string|max:100',
+            'noi_dung'     => 'nullable|string',
+            'tinh_trang'   => 'integer|in:0,1',
+        ]));
+        return response()->json($loaiHopDong);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function destroy(LoaiHopDong $loaiHopDong)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        $loaiHopDong->delete();
+        return response()->json(['message' => 'Đã xóa loại hợp đồng']);
     }
 }

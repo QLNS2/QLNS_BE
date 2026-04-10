@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 class UngVienSeeder extends Seeder
 {
     /**
@@ -26,9 +27,11 @@ class UngVienSeeder extends Seeder
         foreach ($data as $item) {
             DB::table('ung_viens')->insertOrIgnore(array_merge($item, [
                 'file_cv'    => 'cv/' . \Illuminate\Support\Str::slug($item['ho_ten']) . '.pdf',
+                'password'   => Hash::make('password123'),
                 'created_at' => now(),
                 'updated_at' => now(),
             ]));
         }
+
     }
 }

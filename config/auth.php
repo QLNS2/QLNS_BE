@@ -42,7 +42,11 @@ return [
         ],
         'nhanvien' => [
             'driver'    => 'session',
-            'provider'  => 'nhanvienprovider',
+            'provider'  => 'nhanvien',
+        ],
+        'ung_vien' => [
+            'driver'    => 'session',
+            'provider'  => 'tai_khoan_ung_viens',
         ],
 
     ],
@@ -69,11 +73,18 @@ return [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', App\Models\User::class),
         ],
-        'nhanvienprovider' => [
+        'nhanvien' => [
             'driver'    => 'eloquent',
             'model'     => \App\Models\NhanVien::class,
         ],
-
+        'ung_vien' => [
+            'driver'    => 'eloquent',
+            'model'     => \App\Models\UngVien::class,
+        ],
+        // 'tai_khoan_ung_viens' => [
+        //     'driver' => 'eloquent',
+        //     'model' => \App\Models\TaiKhoanUngVien::class,
+        // ],
 
         // 'users' => [
         //     'driver' => 'database',
